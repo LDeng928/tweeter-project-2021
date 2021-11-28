@@ -1,0 +1,45 @@
+.tweet-container {
+  margin: 4rem 0;
+  border: 3px solid darkgray;
+  padding: 1rem;
+  font-weight: 600;
+}
+.tweet-header {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.tweet-header i {
+  flex-grow: 0.3;
+  font-size: 4rem;
+}
+
+.tweet-header span:first-of-type {
+  flex-grow: 2;
+}
+
+.tweet-container article {
+  margin: 3rem 0;
+}
+
+.tweet-footer {
+  border-top: 2px solid darkgray;
+  margin: 1.2rem 0;
+  padding-top: 1.1rem;
+  font-size: 1rem;
+  display: flex;
+}
+
+.tweet-footer span:first-of-type {
+  flex-grow: 1;
+}
+
+.tweet-footer .fas {
+  margin-right: 1rem;
+}
+
+.tweet-footer .fas:hover {
+  color: #cf5a00;
+  cursor: pointer;
+}
