@@ -41,7 +41,7 @@ const renderTweets = (tweets) => {
     let tweet = createTweetElement(tweets[i]);
     console.log(tweet);
     // takes return value and appends it to the tweets container
-    $('#tweet-container').prepend(tweet);
+    $('#tweet-container').append(tweet);
   }
 
 }
