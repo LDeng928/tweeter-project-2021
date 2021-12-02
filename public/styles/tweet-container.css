@@ -1,4 +1,4 @@
-#tweet-container {
+.tweets {
   margin: 4rem 0;
   border: 3px solid darkgray;
   padding: 1rem;
@@ -19,7 +19,7 @@
   flex-grow: 2;
 }
 
-#tweet-container article {
+.tweet-container article {
   margin: 3rem 0;
 }
 

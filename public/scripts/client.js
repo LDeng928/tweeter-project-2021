@@ -16,6 +16,7 @@ const createTweetElement = (tweetObject) => {
 
   // Each tweet's HTML structure
   let tweet = `
+            <div class="tweets">
               <div class="tweet-header">
                   <img src="${tweetObject.user.avatars}"/>
                   <span>${tweetObject.user.name}</span>
@@ -30,7 +31,8 @@ const createTweetElement = (tweetObject) => {
                 <i class="fas fa-flag"></i>
                 <i class="fas fa-retweet"></i>
                 <i class="fas fa-heart"></i>
-              </div>`;
+              </div>
+            </div>`;
 
   return tweet;
 };
@@ -47,7 +49,7 @@ const renderTweets = (tweets) => {
     let tweet = createTweetElement(tweets[i]);
   
     // takes return value and appends it to the tweets container
-    $("#tweet-container").prepend(tweet);
+    $(".tweet-container").prepend(tweet);
   }
 
 };
@@ -63,6 +65,8 @@ const loadTweets = () => {
 $(document).ready(function() {
   // Generate each tweet from server
   loadTweets();
+  $(".new-tweet").find("textarea").focus();
+  $("#message").removeClass("error-message");
 
   // Submitting new tweet function begins
   // event handler for submitting new tweet
@@ -71,26 +75,38 @@ $(document).ready(function() {
 
     // get data from form
     $textarea = $(this).closest("form").find("textarea");
-    $counter = $(this).closest("form").find(".counter")
+    $counter = $(this).closest("form").find(".counter");
+   
 
     // prepare data for AJAX
     $data = $textarea.serialize();
+    // console.log($data);
 
     // validate text before sending to server
-    $text = $textarea.val().trim();
+    // $text = $textarea.val().trim().replace(/script/g, "red");
+    $text = $textarea.val().trim()
+    console.log($text);
+
+    // regex
+    const scriptTagRegex = /(<([^>]+)>)/ig;
 
     if ($text === "" || $text === null) {
-      alert("Please compose a new tweet");
+      $("#message").text("Please compose a tweet").addClass("error-message").toggle("slow");
     } else if ($text.length > 140) {
-      alert("Please compose a short tweet");
-    }
+      $("#message").text("Please compose a shorter tweet").addClass("error-message").toggle("slow");
+    } 
 
-    // Submit data to server using AJAX
-    $.post("/tweets/", $data).done(
+     // Submit data to server using AJAX
+     $.post("/tweets/", $data).done(
       function() {
+        $("#message").removeClass("error-message").text("");
         loadTweets();
       }
-    )
+    );
+
+    // Reset counter and textarea after submitting
+    $counter.text("140");
+    $textarea.val("").focus();
 
   })
   // Submitting new tweet function ends

@@ -23,6 +23,12 @@
   border: none;
   margin-top: 1.1rem;
   width: 100%;
+  background-color: #f4f1ec;
+  border: 2px solid darkgrey;
+}
+
+.new-tweet textarea:focus {
+  outline: none;
 }
 
 .new-tweet div {
@@ -45,4 +51,20 @@
 
 .redFont {
   color: red;
+}
+
+.error-message {
+  border: 2px solid red;
+  padding: 1.2rem;
+  width: 100%;
+  color: rgb(144, 19, 19);
+}
+
+.error-message::before {
+  font-family: 'FontAwesome';
+  font-weight: 400;
+  content: '\f071';
+  display: inline-block;
+  padding-right: 1.1rem;
+  vertical-align: top;
 }
