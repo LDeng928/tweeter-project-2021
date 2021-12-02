@@ -28,3 +28,22 @@ body {
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+@media screen and (min-width: 1024px) {
+  .main-box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main-box main {
+    margin-top: 10rem;
+    padding: 2rem;
+    flex-grow: 2;
+  }
+
+  .main-box header {
+    margin: 10rem 5rem 0 5rem;
+    padding: 0;
+    flex-shrink: 2;
+  }
+}

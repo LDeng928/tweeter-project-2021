@@ -37,3 +37,17 @@ nav div .fa-angle-double-down {
   color: rgb(199, 18, 18);
   font-weight: bold;
 }
+
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  nav .fas {
+    display: none;
+  }
+
+  nav span {
+    margin-top: 1.3rem;
+  }
+}
