@@ -62,7 +62,7 @@ const loadTweets = () => {
   $.get("/tweets/", (data, status) => {
     renderTweets(data);
     console.log(status);
-  })
+  });
 };
 
 $(document).ready(function() {
@@ -80,29 +80,24 @@ $(document).ready(function() {
     $textarea = $(this).closest("form").find("textarea");
     console.log($textarea);
     $counter = $(this).closest("form").find(".counter");
-   
 
     // prepare data for AJAX
     $data = $textarea.serialize();
     // console.log($data);
 
     // validate text before sending to server
-    // $text = $textarea.val().trim().replace(/script/g, "red");
-    $text = $textarea.val().trim()
+    $text = $textarea.val().trim();
 
     console.log($text);
-
-    // regex
-    const scriptTagRegex = /(<([^>]+)>)/ig;
 
     if ($text === "" || $text === null) {
       $("#message").text("Please compose a tweet").addClass("error-message").toggle("slow");
     } else if ($text.length > 140) {
       $("#message").text("Please compose a shorter tweet").addClass("error-message").toggle("slow");
-    } 
+    }
 
-     // Submit data to server using AJAX
-     $.post("/tweets/", $data).done(
+    // Submit data to server using AJAX
+    $.post("/tweets/", $data).done(
       function() {
         $("#message").removeClass("error-message").text("");
         loadTweets();
@@ -113,7 +108,7 @@ $(document).ready(function() {
     $counter.text("140");
     $textarea.val("").focus();
 
-  })
+  });
   // Submitting new tweet function ends
 
 });
