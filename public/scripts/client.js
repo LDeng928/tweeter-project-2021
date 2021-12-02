@@ -4,6 +4,13 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// Utility function to prevent cross-siting scripting
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 /* a function createTweetElement that takes in a tweet object and is responsible for returning a tweet <article> element containing the entire HTML structure of the tweet. */
 const createTweetElement = (tweetObject) => {
   // Calculate the year and time difference
@@ -23,7 +30,7 @@ const createTweetElement = (tweetObject) => {
                   <span>${tweetObject.user.handle}</span>
                 </div>
                 <article id="tweet">
-                  ${tweetObject.content.text}
+                  ${escape(tweetObject.content.text)}
                 </article>
               <div class="tweet-footer">
                 <span>${$dateDifference} days ago</span>
@@ -82,6 +89,7 @@ $(document).ready(function() {
     // validate text before sending to server
     // $text = $textarea.val().trim().replace(/script/g, "red");
     $text = $textarea.val().trim()
+
     console.log($text);
 
     // regex
