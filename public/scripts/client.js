@@ -39,18 +39,27 @@ const renderTweets = (tweets) => {
 
     // calls createTweetElement for each tweet
     let tweet = createTweetElement(tweets[i]);
-    console.log(tweet);
+  
     // takes return value and appends it to the tweets container
-    $('#tweet-container').append(tweet);
+    $("#tweet-container").append(tweet);
   }
 
 }
 
 /* a function createTweetElement that takes in a tweet object and is responsible for returning a tweet <article> element containing the entire HTML structure of the tweet. */
 const createTweetElement = (tweetObject) => {
-  let tweet = (`
+  // Calculate the year and time difference
+  $dateCreated = new Date(tweetObject.created_at);
+  $dateToday = new Date();
+
+  $yearDifference = $dateToday.getFullYear() - $dateCreated.getFullYear();
+  $timeDifference = Math.abs($dateToday.getTime() - $dateCreated.getTime());
+  $dateDifference = Math.ceil($timeDifference / (1000 * 3600 * 24));
+
+  // Each tweet's HTML structure
+  let tweet = `
               <div class="tweet-header">
-                  <img sre="${tweetObject.user.avatar}"/>
+                  <img src="${tweetObject.user.avatars}"/>
                   <span>${tweetObject.user.name}</span>
                   <span>${tweetObject.user.handle}</span>
                 </div>
@@ -58,17 +67,18 @@ const createTweetElement = (tweetObject) => {
                   ${tweetObject.content.text}
                 </article>
               <div class="tweet-footer">
-                <span>10 days ago...</span>
+                <span>${$yearDifference} years ago</span>
 
                 <i class="fas fa-flag"></i>
                 <i class="fas fa-retweet"></i>
                 <i class="fas fa-heart"></i>
-              </div>`);
+              </div>`;
 
-  //console.log(`${tweetObject.content.text}`)
   return tweet;
 }
 
 
-renderTweets(data);
+$(document).ready(function() {
+  renderTweets(data);
+})
 
