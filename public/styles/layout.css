@@ -45,5 +45,8 @@ body {
     margin: 10rem 5rem 0 5rem;
     padding: 0;
     flex-shrink: 2;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 15rem;
   }
 }
