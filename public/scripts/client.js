@@ -38,10 +38,6 @@ const createTweetElement = (tweetObject) => {
 };
 
 const renderTweets = (tweets) => {
-
-  //clear the container before to read all tweets
-  $("#tweet-container").empty();
-
   // loops through tweets from newer to older
   for (let i in tweets) {
 
@@ -66,7 +62,7 @@ $(document).ready(function() {
   // Generate each tweet from server
   loadTweets();
   $(".new-tweet").find("textarea").focus();
-  $("#message").removeClass("error-message");
+  $("#message").toggle(false);
 
   // Submitting new tweet function begins
   // event handler for submitting new tweet
@@ -75,6 +71,7 @@ $(document).ready(function() {
 
     // get data from form
     $textarea = $(this).closest("form").find("textarea");
+    console.log($textarea);
     $counter = $(this).closest("form").find(".counter");
    
 
