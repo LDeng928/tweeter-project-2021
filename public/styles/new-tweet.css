@@ -68,3 +68,19 @@
   padding-right: 1.1rem;
   vertical-align: top;
 }
+
+.success-message {
+  border: 2px solid darkgrey;
+  padding: 1.2rem;
+  width: 100%;
+  color: darkgrey;
+}
+
+.success-message::before {
+  font-family: 'FontAwesome';
+  font-weight: 400;
+  content: '\f058';
+  display: inline-block;
+  padding-right: 1.1rem;
+  vertical-align: top;
+}
