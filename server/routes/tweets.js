@@ -20,6 +20,9 @@ module.exports = function(DataHelpers) {
   tweetsRoutes.post("/", function(req, res) {
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
+   
+    } else if (req.body.text.length > 140) {
+      res.status(400).json({ error: 'invalid input'});
       return;
     }
 

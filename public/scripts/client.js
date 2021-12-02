@@ -11,6 +11,11 @@ const escape = function (str) {
   return div.innerHTML;
 };
 
+// Utility function to remove error message
+const removeErrorMessage = () => {
+  $("#message").removeClass("error-message").text("").toggle("slow");
+};
+
 /* a function createTweetElement that takes in a tweet object and is responsible for returning a tweet <article> element containing the entire HTML structure of the tweet. */
 const createTweetElement = (tweetObject) => {
   // Calculate the year and time difference
@@ -77,13 +82,14 @@ $(document).ready(function() {
     event.preventDefault();
 
     // get data from form
-    $textarea = $(this).closest("form").find("textarea");
+    $textarea = $("#tweet-text");
     console.log($textarea);
-    $counter = $(this).closest("form").find(".counter");
+    $counter = $(".counter");
 
     // prepare data for AJAX
     $data = $textarea.serialize();
-    // console.log($data);
+    console.log($data);
+    console.log(typeof $data);
 
     // validate text before sending to server
     $text = $textarea.val().trim();
@@ -92,20 +98,31 @@ $(document).ready(function() {
 
     if ($text === "" || $text === null) {
       $("#message").text("Please compose a tweet").addClass("error-message").toggle("slow");
-    } else if ($text.length > 140) {
+      
+      setTimeout(() => {
+        removeErrorMessage();
+      }, 3000);
+      
+    } else if ($text.length > 140 || $data.substring(5).length > 140) {
       $("#message").text("Please compose a shorter tweet").addClass("error-message").toggle("slow");
-    }
+
+      setTimeout(() => {
+        removeErrorMessage();
+      }, 3000);
+    };
 
     // Submit data to server using AJAX
     $.post("/tweets/", $data).done(
       function() {
-        $("#message").removeClass("error-message").text("");
+        // removeErrorMessage();
         loadTweets();
+        alert("tweet sent!");
+      
       }
     );
 
     // Reset counter and textarea after submitting
-    $counter.text("140");
+    $counter.text("140").removeClass("redFont");
     $textarea.val("").focus();
 
   });
