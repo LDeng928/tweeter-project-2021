@@ -123,7 +123,8 @@ $(document).ready(function() {
         $("#message").text("Tweet sent successfully").addClass("success-message").toggle("slow");
         
         setTimeout(() => {
-         removeSuccessMessage()
+         removeSuccessMessage();
+         removeErrorMessage();
         }, 3000);
       }
     );
