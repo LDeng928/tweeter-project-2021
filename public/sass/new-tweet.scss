@@ -21,12 +21,11 @@
   }
 
   textarea {
-    display: block;
-    border: none;
-    margin-top: 1.1rem;
+    height: fit-content;
     width: 100%;
-    background-color: #f4f1ec;
-    @include mixins.border($border: thin);
+    background-color: variables.$new-tweet-background;
+    border: none;
+    border-bottom: 3px solid darkgray;
 
     &:focus {
       outline: none;

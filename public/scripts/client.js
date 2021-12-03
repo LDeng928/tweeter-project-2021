@@ -79,6 +79,7 @@ $(document).ready(function() {
   loadTweets();
   $(".new-tweet").find("textarea").focus();
   $("#message").toggle(false);
+  $(".scroll-up").hide();
 
   // Submitting new tweet function begins
   // event handler for submitting new tweet
@@ -137,6 +138,22 @@ $(document).ready(function() {
   });
   // Submitting new tweet function ends
 
+
+  // Scroll event
+  $(window).scroll(function() {
+    if ($(this).scrollTop()) {
+        $('.scroll-up').fadeIn();
+    } else {
+        $('.scroll-up').fadeOut();
+    }
+  });
+
+  $(".scroll-up").on("click", function() {
+    $("html, body").animate({scrollTop: 0}, 1000);
+  }); 
+
 });
+
+
 
 

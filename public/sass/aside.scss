@@ -1,0 +1,15 @@
+@use 'variables';
+@use 'mixins';
+
+.scroll-up {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  z-index: 999;
+  cursor: pointer;
+
+  .fas {
+    color: variables.$orange-color;
+    font-size: 2rem;
+  }
+}

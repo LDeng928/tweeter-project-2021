@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/new-tweet.css">
     <link rel="stylesheet" href="./styles/tweet-container.css">
+    <link rel="stylesheet" href="./styles/aside.css">
 
 
     <!-- External fonts -->
@@ -63,8 +64,8 @@
           </p>
           <h2>Compose Tweet</h2>
           <form id="form" action="/tweets/" method="POST">
-            <label for="tweet-text">What are you humming about?</label>
-            <textarea name="text" id="tweet-text" placeholder="start to write your tweet here"></textarea>
+            <!-- <label for="tweet-text">What are you humming about?</label> -->
+            <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
             <div>
               <button type="submit" id="submitTweet">Tweet</button>
               <output name="counter" class="counter" for="tweet-text">140</output>
@@ -74,6 +75,12 @@
 
         <section class="tweet-container"></section>
       </main>
+
+      <aside>
+        <div class="scroll-up" title="back to top">
+          <i class="fas fa-arrow-up"></i>
+        </div>
+      </aside>
     </div>
   </body>
 </html>

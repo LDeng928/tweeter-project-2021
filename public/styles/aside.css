@@ -1,0 +1,12 @@
+/* Variables */
+.scroll-up {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  z-index: 999;
+  cursor: pointer;
+}
+.scroll-up .fas {
+  color: #cf5a00;
+  font-size: 2rem;
+}
