@@ -26,6 +26,7 @@ nav div {
 nav div .fa-angle-double-down {
   color: #e63946;
   font-weight: bold;
+  cursor: pointer;
 }
 nav div p {
   margin: 0.5em 0;

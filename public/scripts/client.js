@@ -11,13 +11,17 @@ const escape = function (str) {
   return div.innerHTML;
 };
 
-// Utility function to remove error message and success message
+// Utility function for setTimeout
 const removeErrorMessage = () => {
   $("#message").removeClass("error-message").text("").toggle("slow");
 };
 
 const removeSuccessMessage = () => {
   $("#message").removeClass("success-message").text("").toggle("slow");
+};
+
+const removeNewTweetBox = () => {
+  $(".new-tweet").toggle("slow");
 };
 
 /* a function createTweetElement that takes in a tweet object and is responsible for returning a tweet <article> element containing the entire HTML structure of the tweet. */
@@ -79,6 +83,13 @@ $(document).ready(function() {
   $(".new-tweet").find("textarea").focus();
   $("#message").toggle(false);
   $(".scroll-up").hide();
+  $(".new-tweet").hide();
+
+  // Compose new tweet event listener starts
+  $("#tweet-icon").on("click", function() {
+    $(".new-tweet").slideDown("slow");
+  })
+  // Compose new tweet event listener ends
 
   // Submitting new tweet function begins
   // event handler for submitting new tweet
@@ -125,6 +136,7 @@ $(document).ready(function() {
         setTimeout(() => {
          removeSuccessMessage();
          removeErrorMessage();
+         removeNewTweetBox();
         }, 3000);
       }
     );
