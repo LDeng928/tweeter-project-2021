@@ -11,7 +11,7 @@ const escape = function (str) {
   return div.innerHTML;
 };
 
-// Utility function to remove error message
+// Utility function to remove error message and success message
 const removeErrorMessage = () => {
   $("#message").removeClass("error-message").text("").toggle("slow");
 };
@@ -63,10 +63,9 @@ const renderTweets = (tweets) => {
     // takes return value and appends it to the tweets container
     $(".tweet-container").prepend(tweet);
   }
-
 };
 
-// Initial load of tweets
+// Utility function for the loading tweets
 const loadTweets = () => {
   $.get("/tweets/", (data, status) => {
     renderTweets(data);
@@ -126,8 +125,6 @@ $(document).ready(function() {
         setTimeout(() => {
          removeSuccessMessage()
         }, 3000);
-
-
       }
     );
 
@@ -139,7 +136,7 @@ $(document).ready(function() {
   // Submitting new tweet function ends
 
 
-  // Scroll event
+  // Scroll event starts
   $(window).scroll(function() {
     if ($(this).scrollTop()) {
         $('.scroll-up').fadeIn();
@@ -151,7 +148,7 @@ $(document).ready(function() {
   $(".scroll-up").on("click", function() {
     $("html, body").animate({scrollTop: 0}, 1000);
   }); 
-
+  // Scroll event ends
 });
 
 
