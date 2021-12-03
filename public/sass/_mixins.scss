@@ -1,0 +1,17 @@
+@mixin verticalLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin horizontalLayout {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin border($border: thick) {
+  border: 3px solid darkgray;
+}
+
+@mixin border($border: thin) {
+  border: 3px solid darkgray;
+}

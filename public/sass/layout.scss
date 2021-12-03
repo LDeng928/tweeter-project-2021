@@ -1,3 +1,5 @@
+@use 'mixins' as layout;
+
 /*
  * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
  * https://css-tricks.com/international-box-sizing-awareness-day/
@@ -6,7 +8,6 @@
 html {
   box-sizing: border-box;
 }
-
 *,
 *:before,
 *:after {
@@ -16,6 +17,7 @@ html {
 /*
  * Global layout stuff
 */
+
 body {
   color: #545149;
   background-color: #f4f1ec;
@@ -25,26 +27,28 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
 */
+
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 @media screen and (min-width: 1024px) {
   .main-box {
-    display: flex;
-    flex-direction: row;
-  }
-  .main-box main {
-    margin-top: 10rem;
-    padding: 2rem;
-    flex-grow: 2;
-  }
-  .main-box header {
-    margin: 10rem 5rem 0 5rem;
-    padding: 0;
-    flex-shrink: 2;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 15rem;
+    @include layout.horizontalLayout;
+
+    main {
+      margin-top: 10rem;
+      padding: 2rem;
+      flex-grow: 2;
+    }
+
+    header {
+      margin: 10rem 5rem 0 5rem;
+      padding: 0;
+      flex-shrink: 2;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 15rem;
+    }
   }
 }

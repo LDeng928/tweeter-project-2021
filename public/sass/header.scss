@@ -1,0 +1,19 @@
+@use 'mixins';
+@use 'variables';
+
+header {
+  @include mixins.verticalLayout;
+  height: 500px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10rem;
+  background-image: url('../images/45-degree-fabric-light.png');
+  background-color: variables.$orange-color;
+  position: relative;
+  z-index: 0;
+
+  h2 {
+    color: whitesmoke;
+  }
+}

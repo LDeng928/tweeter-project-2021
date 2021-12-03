@@ -1,0 +1,55 @@
+@use 'variables';
+@use 'mixins' as layout;
+
+/* nav layout */
+nav {
+  height: 120px;
+  width: 100vw;
+  background-color: variables.$nav-background;
+  color: variables.$font-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5em 0 1.5em;
+  position: fixed;
+  z-index: 1;
+
+  span {
+    font-family: variables.$bungee-font;
+    font-size: 2rem;
+  }
+
+  div {
+    @include layout.verticalLayout;
+    justify-content: center;
+    align-items: center;
+
+    .fa-angle-double-down {
+      color: variables.$icon-color;
+      font-weight: bold;
+    }
+
+    p {
+      margin: 0.5em 0;
+
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+
+    .fas {
+      display: none;
+    }
+
+    span {
+      margin-top: 1.3rem;
+    }
+  }
+}

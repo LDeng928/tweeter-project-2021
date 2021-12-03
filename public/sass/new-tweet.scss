@@ -1,0 +1,89 @@
+@use 'variables';
+@use 'mixins';
+
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 100%;
+
+  form {
+    width: 100%;
+
+    label {
+      border-bottom: 3px solid darkgray;
+      padding-bottom: 5px;
+      display: block;
+      width: 100%;
+    }
+  }
+
+  textarea {
+    display: block;
+    border: none;
+    margin-top: 1.1rem;
+    width: 100%;
+    background-color: #f4f1ec;
+    @include mixins.border($border: thin);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  div {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: variables.$bungee-font;
+
+    button {
+      background-color: variables.$nav-background;
+      border: none;
+      color: variables.$font-color;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.2em;
+      cursor: pointer;
+    }
+  }
+}
+
+.redFont {
+  color: red;
+}
+
+.error-message {
+  border: 2px solid red;
+  padding: 1.2rem;
+  width: 100%;
+  color: rgb(144, 19, 19);
+
+  &::before {
+    font-family: 'FontAwesome';
+    font-weight: 400;
+    content: '\f071';
+    display: inline-block;
+    padding-right: 1.1rem;
+    vertical-align: top;
+  }
+}
+
+.success-message {
+  @include mixins.border($border: thin);
+  padding: 1.2rem;
+  width: 100%;
+  color: darkgrey;
+
+  &::before {
+    font-family: 'FontAwesome';
+    font-weight: 400;
+    content: '\f058';
+    display: inline-block;
+    padding-right: 1.1rem;
+    vertical-align: top;
+  }
+}

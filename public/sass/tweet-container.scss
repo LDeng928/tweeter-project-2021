@@ -1,0 +1,53 @@
+@use 'variables';
+@use 'mixins';
+
+.tweets {
+  margin: 4rem 0;
+  @include mixins.border($border: thick);
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+
+  i {
+    flex-grow: 0.3;
+    font-size: 4rem;
+  }
+
+  span {
+    &:first-of-type {
+      flex-grow: 2;
+    }
+  }
+}
+
+.tweet-container article {
+  margin: 3rem 0;
+}
+
+.tweet-footer {
+  border-top: 2px solid darkgray;
+  margin: 1.2rem 0;
+  padding-top: 1.1rem;
+  font-size: 1rem;
+  display: flex;
+
+  span {
+    &:first-of-type {
+      flex-grow: 1;
+    }
+  }
+
+  .fas {
+    margin-right: 1rem;
+
+    &:hover {
+      color: variables.$orange-color;
+      cursor: pointer;
+    }
+  }
+}
