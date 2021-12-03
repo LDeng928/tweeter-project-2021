@@ -39,8 +39,11 @@ nav div p span {
   nav {
     flex-direction: column;
   }
+  nav div {
+    flex-direction: row;
+  }
   nav .fas {
-    display: none;
+    margin-left: 2rem;
   }
   nav span {
     margin-top: 1.3rem;

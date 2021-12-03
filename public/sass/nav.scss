@@ -45,8 +45,12 @@ nav {
   nav {
     flex-direction: column;
 
+    div {
+      flex-direction: row;
+    }
+
     .fas {
-      display: none;
+      margin-left: 2rem;
     }
 
     span {
