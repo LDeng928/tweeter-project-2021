@@ -97,13 +97,10 @@ $(document).ready(function () {
 
     // get data from form
     $textarea = $('#tweet-text');
-    console.log($textarea);
     $counter = $('.counter');
 
     // validate text before sending to server
     $text = $textarea.val().trim();
-
-    console.log($text);
 
     if ($text === '' || $text === null) {
       $('#message').text('Please compose a tweet').addClass('error-message').toggle('slow');
@@ -120,8 +117,6 @@ $(document).ready(function () {
     } else {
       // prepare data for AJAX
       $data = $textarea.serialize();
-      console.log($data);
-      console.log(typeof $data);
     }
 
     // Submit data to server using AJAX
