@@ -6,22 +6,22 @@
 
 // Utility function to prevent cross-siting scripting
 const escape = function (str) {
-  let div = document.createElement("div");
+  let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
 // Utility function for setTimeout
 const removeErrorMessage = () => {
-  $("#message").removeClass("error-message").text("").toggle("slow");
+  $('#message').removeClass('error-message').text('').toggle('slow');
 };
 
 const removeSuccessMessage = () => {
-  $("#message").removeClass("success-message").text("").toggle("slow");
+  $('#message').removeClass('success-message').text('').toggle('slow');
 };
 
 const removeNewTweetBox = () => {
-  $(".new-tweet").toggle("slow");
+  $('.new-tweet').toggle('slow');
 };
 
 /* a function createTweetElement that takes in a tweet object and is responsible for returning a tweet <article> element containing the entire HTML structure of the tweet. */
@@ -60,110 +60,100 @@ const createTweetElement = (tweetObject) => {
 const renderTweets = (tweets) => {
   // loops through tweets from newer to older
   for (let i in tweets) {
-
     // calls createTweetElement for each tweet
     let tweet = createTweetElement(tweets[i]);
-  
+
     // takes return value and appends it to the tweets container
-    $(".tweet-container").prepend(tweet);
+    $('.tweet-container').prepend(tweet);
   }
 };
 
 // Utility function for the loading tweets
 const loadTweets = () => {
-  $.get("/tweets/", (data, status) => {
+  $.get('/tweets/', (data, status) => {
     renderTweets(data);
     console.log(status);
   });
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
   // Generate each tweet from server
   loadTweets();
-  $(".new-tweet").find("textarea").focus();
-  $("#message").toggle(false);
-  $(".scroll-up").hide();
-  $(".new-tweet").hide();
+  $('.new-tweet').find('textarea').focus();
+  $('#message').toggle(false);
+  $('.scroll-up').hide();
+  $('.new-tweet').hide();
 
   // Compose new tweet event listener starts
-  $("#tweet-icon").on("click", function() {
-    $(".new-tweet").slideDown("slow");
-  })
+  $('#tweet-icon').on('click', function () {
+    $('.new-tweet').slideDown('slow');
+  });
   // Compose new tweet event listener ends
 
   // Submitting new tweet function begins
   // event handler for submitting new tweet
-  $("#submitTweet").on("click", function(event) {
+  $('#submitTweet').on('click', function (event) {
     event.preventDefault();
 
     // get data from form
-    $textarea = $("#tweet-text");
+    $textarea = $('#tweet-text');
     console.log($textarea);
-    $counter = $(".counter");
-
-    // prepare data for AJAX
-    $data = $textarea.serialize();
-    console.log($data);
-    console.log(typeof $data);
+    $counter = $('.counter');
 
     // validate text before sending to server
     $text = $textarea.val().trim();
 
     console.log($text);
 
-    if ($text === "" || $text === null || $data === "") {
-      $("#message").text("Please compose a tweet").addClass("error-message").toggle("slow");
-      
-      setTimeout(() => {
-        removeErrorMessage();
-      }, 3000);
-      
-    } else if ($text.length > 140) {
-      $("#message").text("Please compose a shorter tweet").addClass("error-message").toggle("slow");
+    if ($text === '' || $text === null) {
+      $('#message').text('Please compose a tweet').addClass('error-message').toggle('slow');
 
       setTimeout(() => {
         removeErrorMessage();
       }, 3000);
-    };
+    } else if ($text.length > 140) {
+      $('#message').text('Please compose a shorter tweet').addClass('error-message').toggle('slow');
+
+      setTimeout(() => {
+        removeErrorMessage();
+      }, 3000);
+    } else {
+      // prepare data for AJAX
+      $data = $textarea.serialize();
+      console.log($data);
+      console.log(typeof $data);
+    }
 
     // Submit data to server using AJAX
-    $.post("/tweets/", $data).done(
-      function() {
-        loadTweets();
+    $.post('/tweets/', $data).done(function () {
+      loadTweets();
 
-        $("#message").text("Tweet sent successfully").addClass("success-message").toggle("slow");
-        
-        setTimeout(() => {
-         removeSuccessMessage();
-         removeErrorMessage();
-         removeNewTweetBox();
-        }, 3000);
-      }
-    );
+      $('#message').text('Tweet sent successfully').addClass('success-message').toggle('slow');
+
+      setTimeout(() => {
+        removeSuccessMessage();
+        removeErrorMessage();
+        removeNewTweetBox();
+      }, 3000);
+    });
 
     // Reset counter and textarea after submitting
-    $counter.text("140").removeClass("redFont");
-    $textarea.val("").focus();
-
+    $counter.text('140').removeClass('redFont');
+    $textarea.val('').focus();
   });
   // Submitting new tweet function ends
 
-
   // Scroll event starts
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     if ($(this).scrollTop()) {
-        $('.scroll-up').fadeIn();
+      $('.scroll-up').fadeIn();
     } else {
-        $('.scroll-up').fadeOut();
+      $('.scroll-up').fadeOut();
     }
   });
 
-  $(".scroll-up").on("click", function() {
-    $("html, body").animate({scrollTop: 0}, 1000);
-  }); 
+  $('.scroll-up').on('click', function () {
+    $('html, body').animate({ scrollTop: 0 }, 1000);
+  });
   // Scroll event ends
 });
-
-
-
-
